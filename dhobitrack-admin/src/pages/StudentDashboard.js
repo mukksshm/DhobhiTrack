@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const STATUSES = [
-  { key: 'received', label: 'Received', icon: '🔄', color: 'received', desc: 'Your laundry has been received by the laundry service.' },
-  { key: 'washing', label: 'Washing', icon: '🧼', color: 'washing', desc: 'Your clothes are currently being washed.' },
-  { key: 'ready', label: 'Ready for Pickup', icon: '✅', color: 'ready', desc: 'Your laundry is clean and ready to collect!' },
+  { key: 'received', label: 'Received', color: 'received', desc: 'Your laundry has been received by the laundry service.' },
+  { key: 'washing', label: 'Washing', color: 'washing', desc: 'Your clothes are currently being washed.' },
+  { key: 'ready', label: 'Ready for Pickup', color: 'ready', desc: 'Your laundry is clean and ready to collect!' },
 ];
 
 export default function StudentDashboard() {
@@ -74,7 +74,6 @@ export default function StudentDashboard() {
         {/* Status Display */}
         {!order || order.status === null ? (
           <div className="status-waiting-card animate-scale-in">
-            <div className="waiting-icon">⏳</div>
             <h2 className="waiting-title">Awaiting Drop-off</h2>
             <p className="waiting-desc">Your laundry hasn't been received yet. Please drop off your bag and the status will update here.</p>
           </div>
@@ -82,14 +81,13 @@ export default function StudentDashboard() {
           <div className="status-main-card animate-scale-in">
             <div className="status-current-label">Current Status</div>
             <div className={`status-big-badge status-${currentStatus.color}`}>
-              <span className="status-big-icon">{currentStatus.icon}</span>
               <span className="status-big-text">{currentStatus.label}</span>
             </div>
             <p className="status-desc-text">{currentStatus.desc}</p>
 
             {order.status === 'ready' && (
               <div className="pickup-alert">
-                🎉 Your laundry is ready! Head to the laundry room to collect your bag <strong>{student.laundryId}</strong>.
+                Your laundry is ready! Head to the laundry room to collect your bag <strong>{student.laundryId}</strong>.
               </div>
             )}
 
@@ -98,7 +96,7 @@ export default function StudentDashboard() {
               {STATUSES.map((s, i) => (
                 <div key={s.key} className="sp-step">
                   <div className={`sp-dot ${i <= currentStatusIndex ? 'sp-done' : ''} ${i === currentStatusIndex ? 'sp-current' : ''}`}>
-                    {i < currentStatusIndex ? '✓' : i === currentStatusIndex ? s.icon : ''}
+                    {''}
                   </div>
                   <div className={`sp-label ${i === currentStatusIndex ? 'sp-label-active' : ''}`}>{s.label}</div>
                   {i < STATUSES.length - 1 && (

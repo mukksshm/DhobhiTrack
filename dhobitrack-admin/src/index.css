@@ -5,46 +5,46 @@
 }
 
 :root {
-  --bg-primary: #0a0a1a;
-  --bg-secondary: #0f0e23;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --bg-card-hover: rgba(255, 255, 255, 0.08);
-  --bg-glass: rgba(255, 255, 255, 0.06);
-  --bg-glass-strong: rgba(255, 255, 255, 0.1);
-  --bg-input: rgba(255, 255, 255, 0.06);
+  --bg-primary: #cfe0dc;
+  --bg-secondary: #d9e9e5;
+  --bg-card: rgba(255, 255, 255, 0.78);
+  --bg-card-hover: rgba(255, 255, 255, 0.92);
+  --bg-glass: rgba(255, 255, 255, 0.72);
+  --bg-glass-strong: rgba(255, 255, 255, 0.9);
+  --bg-input: rgba(255, 255, 255, 0.88);
 
-  --accent-primary: #7c5cfc;
-  --accent-primary-hover: #6a48e8;
-  --accent-secondary: #c084fc;
-  --accent-glow: rgba(124, 92, 252, 0.3);
-  --accent-gradient: linear-gradient(135deg, #7c5cfc 0%, #c084fc 50%, #f472b6 100%);
-  --accent-gradient-subtle: linear-gradient(135deg, rgba(124,92,252,0.15) 0%, rgba(192,132,252,0.1) 100%);
+  --accent-primary: #0f684d;
+  --accent-primary-hover: #0b573f;
+  --accent-secondary: #ff920f;
+  --accent-glow: rgba(15, 104, 77, 0.26);
+  --accent-solid: #0f684d;
+  --accent-solid-subtle: rgba(15,104,77,0.12);
 
   --status-submitted: #60a5fa;
-  --status-received: #a78bfa;
-  --status-washing: #fbbf24;
-  --status-ready: #34d399;
+  --status-received: #0f684d;
+  --status-washing: #ff920f;
+  --status-ready: #12a85c;
   --status-collected: #9ca3af;
 
   --status-submitted-bg: rgba(96, 165, 250, 0.15);
-  --status-received-bg: rgba(167, 139, 250, 0.15);
-  --status-washing-bg: rgba(251, 191, 36, 0.15);
-  --status-ready-bg: rgba(52, 211, 153, 0.15);
+  --status-received-bg: rgba(15, 104, 77, 0.15);
+  --status-washing-bg: rgba(255, 146, 15, 0.18);
+  --status-ready-bg: rgba(18, 168, 92, 0.15);
   --status-collected-bg: rgba(156, 163, 175, 0.15);
 
-  --text-primary: #f1f0f5;
-  --text-secondary: #9b97b0;
-  --text-muted: #6b6785;
-  --text-accent: #c084fc;
+  --text-primary: #14372d;
+  --text-secondary: #4d6c63;
+  --text-muted: #739088;
+  --text-accent: #ff920f;
 
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-medium: rgba(255, 255, 255, 0.1);
-  --border-accent: rgba(124, 92, 252, 0.3);
+  --border-subtle: rgba(15, 104, 77, 0.10);
+  --border-medium: rgba(15, 104, 77, 0.16);
+  --border-accent: rgba(15, 104, 77, 0.32);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 40px rgba(124, 92, 252, 0.15);
+  --shadow-sm: 0 2px 8px rgba(15, 60, 48, 0.10);
+  --shadow-md: 0 4px 24px rgba(15, 60, 48, 0.14);
+  --shadow-lg: 0 8px 48px rgba(15, 60, 48, 0.18);
+  --shadow-glow: 0 0 40px rgba(15, 104, 77, 0.16);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -128,12 +128,6 @@ input, select, textarea {
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 @keyframes blobMove1 {

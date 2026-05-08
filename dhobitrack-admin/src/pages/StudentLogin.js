@@ -33,7 +33,6 @@ export default function StudentLogin() {
       <div className="auth-back" onClick={() => navigate('/')}>← Back</div>
       <div className="auth-container animate-scale-in">
         <div className="auth-header">
-          <div className="auth-icon">🎓</div>
           <h1 className="auth-title">Student Login</h1>
           <p className="auth-subtitle">Check your laundry status anytime</p>
         </div>

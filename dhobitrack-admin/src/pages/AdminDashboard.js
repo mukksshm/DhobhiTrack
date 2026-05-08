@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const STATUSES = [
-  { key: 'received', label: 'Received', icon: '🔄', color: 'received' },
-  { key: 'washing', label: 'Washing', icon: '🧼', color: 'washing' },
-  { key: 'ready', label: 'Ready for Pickup', icon: '✅', color: 'ready' },
+  { key: 'received', label: 'Received', color: 'received' },
+  { key: 'washing', label: 'Washing', color: 'washing' },
+  { key: 'ready', label: 'Ready for Pickup', color: 'ready' },
 ];
 
 export default function AdminDashboard() {
@@ -104,13 +104,12 @@ export default function AdminDashboard() {
         {/* Stats */}
         <div className="stats-row">
           {[
-            { label: 'Total', value: counts.all, icon: '📦' },
-            { label: 'Pending', value: counts.pending, icon: '⏳' },
-            { label: 'Washing', value: counts.washing, icon: '🧼' },
-            { label: 'Ready', value: counts.ready, icon: '✅' },
+            { label: 'Total', value: counts.all },
+            { label: 'Pending', value: counts.pending },
+            { label: 'Washing', value: counts.washing },
+            { label: 'Ready', value: counts.ready },
           ].map(s => (
             <div key={s.label} className="stat-card">
-              <span className="stat-card-icon">{s.icon}</span>
               <span className="stat-card-value">{s.value}</span>
               <span className="stat-card-label">{s.label}</span>
             </div>
@@ -123,20 +122,20 @@ export default function AdminDashboard() {
             id="admin-search"
             className="form-input search-input"
             type="text"
-            placeholder="🔍 Search by Laundry ID, name, or mobile..."
+            placeholder="Search by Laundry ID, name, or mobile..."
             value={search}
             onChange={e => { setSearch(e.target.value); setSelected(new Set()); }}
           />
           <div className="filter-tabs">
             {[
-              { key: 'all', label: 'All', icon: '📋' },
-              { key: 'pending', label: 'Pending', icon: '⏳' },
-              ...STATUSES.map(s => ({ key: s.key, label: s.label, icon: s.icon })),
-            ].map(({ key, label, icon }) => (
+              { key: 'all', label: 'All' },
+              { key: 'pending', label: 'Pending' },
+              ...STATUSES.map(s => ({ key: s.key, label: s.label })),
+            ].map(({ key, label }) => (
               <button key={key} id={`filter-${key}`}
                 className={`filter-tab ${filter === key ? 'active' : ''}`}
                 onClick={() => { setFilter(key); setSelected(new Set()); }}>
-                {icon} {label}
+                {label}
                 <span className="tab-badge">{counts[key] ?? 0}</span>
               </button>
             ))}
@@ -153,19 +152,18 @@ export default function AdminDashboard() {
                   className={`bulk-btn bulk-${s.color}`}
                   onClick={() => updateOrders(selectedIds, s.key)}
                   disabled={bulkUpdating}>
-                  {bulkUpdating ? <span className="btn-spinner dark"></span> : s.icon}
-                  {' '}Mark as {s.label}
+                  {bulkUpdating && <span className="btn-spinner dark"></span>}
+                  Mark as {s.label}
                 </button>
               ))}
             </div>
-            <button className="bulk-clear" onClick={() => setSelected(new Set())}>✕ Clear</button>
+            <button className="bulk-clear" onClick={() => setSelected(new Set())}>Clear</button>
           </div>
         )}
 
         {/* Orders List */}
         {filtered.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">📭</div>
             <h3>No orders found</h3>
             <p>{search ? 'Try a different search term.' : 'No laundry records yet.'}</p>
           </div>
@@ -228,9 +226,9 @@ export default function AdminDashboard() {
 
                   <div className="admin-order-right" onClick={e => e.stopPropagation()}>
                     {!order.status ? (
-                      <span className="status-badge status-pending">⏳ Pending</span>
+                      <span className="status-badge status-pending">Pending</span>
                     ) : (
-                      <span className={`status-badge status-${st?.color}`}>{st?.icon} {st?.label}</span>
+                      <span className={`status-badge status-${st?.color}`}>{st?.label}</span>
                     )}
                     <select
                       id={`status-select-${order.id}`}
@@ -240,7 +238,7 @@ export default function AdminDashboard() {
                     >
                       <option value="" disabled>Set status...</option>
                       {STATUSES.map(s => (
-                        <option key={s.key} value={s.key}>{s.icon} {s.label}</option>
+                        <option key={s.key} value={s.key}>{s.label}</option>
                       ))}
                     </select>
                   </div>

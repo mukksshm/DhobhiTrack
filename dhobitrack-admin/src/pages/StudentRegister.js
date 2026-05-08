@@ -64,7 +64,6 @@ export default function StudentRegister() {
       <div className="auth-back" onClick={() => navigate('/')}>← Back</div>
       <div className="auth-container animate-scale-in">
         <div className="auth-header">
-          <div className="auth-icon">📝</div>
           <h1 className="auth-title">Create Account</h1>
           <p className="auth-subtitle">Register with your laundry bag ID to track status</p>
         </div>

@@ -24,7 +24,7 @@ export default function LandingPage() {
         </div>
         <h1 className="hero-title animate-slide-up-delay-1">
           Track Your Laundry<br />
-          <span className="hero-gradient">In Real-Time</span>
+          <span className="hero-solid">In Real-Time</span>
         </h1>
         <p className="hero-subtitle animate-slide-up-delay-2">
           No more guessing. Know exactly when your clothes are received, being washed, or ready for pickup.
@@ -37,7 +37,6 @@ export default function LandingPage() {
             <p className="portal-desc">Submit laundry, track bag status, and get notified when it's ready.</p>
             <button className="portal-btn student-btn">
               Enter as Student
-              <span className="btn-arrow">→</span>
             </button>
           </div>
 
@@ -47,7 +46,6 @@ export default function LandingPage() {
             <p className="portal-desc">Manage orders, update status, and oversee all laundry operations.</p>
             <button className="portal-btn admin-btn">
               Enter as Admin
-              <span className="btn-arrow">→</span>
             </button>
           </div>
         </div>
