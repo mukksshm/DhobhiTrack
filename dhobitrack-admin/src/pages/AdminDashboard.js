@@ -14,7 +14,6 @@ export default function AdminDashboard() {
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState(new Set());
   const [bulkUpdating, setBulkUpdating] = useState(false);
-  const [notice, setNotice] = useState('');
 
   useEffect(() => {
     if (!localStorage.getItem('dhobitrack_admin_session')) { navigate('/admin/login'); return; }
@@ -26,10 +25,15 @@ export default function AdminDashboard() {
     setOrders([...all].reverse());
   };
 
-  const updateOrders = () => {
+  const updateOrders = (ids, newStatus) => {
     setBulkUpdating(true);
     setTimeout(() => {
-      setNotice('Status update option is only shown for now. We will connect this feature later.');
+      const all = JSON.parse(localStorage.getItem('dhobitrack_orders') || '[]');
+      const updated = all.map(o =>
+        ids.includes(o.id) ? { ...o, status: newStatus, updatedAt: new Date().toISOString() } : o
+      );
+      localStorage.setItem('dhobitrack_orders', JSON.stringify(updated));
+      setOrders([...updated].reverse());
       setSelected(new Set());
       setBulkUpdating(false);
     }, 500);
@@ -56,13 +60,13 @@ export default function AdminDashboard() {
     navigate('/');
   };
 
-  const cleanSearchText = (value = '') => value.toLowerCase().replace(/[^a-z0-9]/g, '');
-
   const filtered = orders.filter(o => {
     const matchFilter = filter === 'all' || o.status === filter || (filter === 'pending' && !o.status);
-    const q = cleanSearchText(search);
-    const laundryNumber = cleanSearchText(o.laundryId);
-    const matchSearch = !q || laundryNumber.includes(q);
+    const q = search.toLowerCase();
+    const matchSearch = !q ||
+      o.laundryId?.toLowerCase().includes(q) ||
+      o.studentName?.toLowerCase().includes(q) ||
+      o.mobile?.includes(q);
     return matchFilter && matchSearch;
   });
 
@@ -74,6 +78,7 @@ export default function AdminDashboard() {
     ready: orders.filter(o => o.status === 'ready').length,
   };
 
+  const selectedIds = Array.from(selected);
   const allSelected = filtered.length > 0 && selected.size === filtered.length;
 
   return (
@@ -92,11 +97,9 @@ export default function AdminDashboard() {
 
       <div className="dashboard-content animate-slide-up">
         <div className="admin-header">
-          <h1 className="admin-title">Laundry Records</h1>
-          <p className="admin-subtitle">Search students and see laundry records</p>
+          <h1 className="admin-title">Laundry Management</h1>
+          <p className="admin-subtitle">Select multiple orders to update their status at once</p>
         </div>
-
-        {notice && <div className="simple-notice">{notice}</div>}
 
         {/* Stats */}
         <div className="stats-row">
@@ -120,7 +123,7 @@ export default function AdminDashboard() {
             id="admin-search"
             className="form-input search-input"
             type="text"
-            placeholder="Search laundry number only, like BAG-042 or 042"
+            placeholder="🔍 Search by Laundry ID, name, or mobile..."
             value={search}
             onChange={e => { setSearch(e.target.value); setSelected(new Set()); }}
           />
@@ -148,7 +151,7 @@ export default function AdminDashboard() {
               {STATUSES.map(s => (
                 <button key={s.key} id={`bulk-${s.key}`}
                   className={`bulk-btn bulk-${s.color}`}
-                  onClick={updateOrders}
+                  onClick={() => updateOrders(selectedIds, s.key)}
                   disabled={bulkUpdating}>
                   {bulkUpdating ? <span className="btn-spinner dark"></span> : s.icon}
                   {' '}Mark as {s.label}
@@ -233,7 +236,7 @@ export default function AdminDashboard() {
                       id={`status-select-${order.id}`}
                       className="status-select"
                       value={order.status || ''}
-                      onChange={updateOrders}
+                      onChange={e => updateOrders([order.id], e.target.value)}
                     >
                       <option value="" disabled>Set status...</option>
                       {STATUSES.map(s => (

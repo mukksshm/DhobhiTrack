@@ -59,12 +59,14 @@ export default function StudentRegister() {
 
   return (
     <div className="auth-page">
+      <div className="blob blob-1"></div>
+      <div className="blob blob-2"></div>
       <div className="auth-back" onClick={() => navigate('/')}>← Back</div>
       <div className="auth-container animate-scale-in">
         <div className="auth-header">
           <div className="auth-icon">📝</div>
           <h1 className="auth-title">Create Account</h1>
-          <p className="auth-subtitle">Register your laundry bag ID</p>
+          <p className="auth-subtitle">Register with your laundry bag ID to track status</p>
         </div>
         {error && <div className="auth-error">{error}</div>}
         <form onSubmit={handleSubmit} className="auth-form">
