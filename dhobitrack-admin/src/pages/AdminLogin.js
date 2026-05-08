@@ -22,16 +22,18 @@ export default function AdminLogin() {
     }, 800);
   };
 
+  const forgotPassword = () => {
+    setError('Use the default admin password or contact the project owner.');
+  };
+
   return (
     <div className="auth-page">
-      <div className="blob blob-1"></div>
-      <div className="blob blob-2"></div>
       <div className="auth-back" onClick={() => navigate('/')}>← Back</div>
       <div className="auth-container animate-scale-in">
         <div className="auth-header">
           <div className="auth-icon">⚙️</div>
           <h1 className="auth-title">Admin Login</h1>
-          <p className="auth-subtitle">Access the laundry management panel</p>
+          <p className="auth-subtitle">Update student laundry status</p>
         </div>
         <div className="admin-hint">
           <span>🔑</span> Default: <strong>admin</strong> / <strong>admin123</strong>
@@ -64,6 +66,9 @@ export default function AdminLogin() {
           </div>
           <button id="admin-login-btn" className="btn-primary admin-login-btn" type="submit" disabled={loading}>
             {loading ? <span className="btn-spinner"></span> : 'Login as Admin'}
+          </button>
+          <button className="forgot-btn" type="button" onClick={forgotPassword}>
+            Forgot password?
           </button>
         </form>
       </div>

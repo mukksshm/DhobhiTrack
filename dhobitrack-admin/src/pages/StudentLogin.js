@@ -26,16 +26,18 @@ export default function StudentLogin() {
     }, 800);
   };
 
+  const forgotPassword = () => {
+    setError('Please contact the laundry admin to reset your password.');
+  };
+
   return (
     <div className="auth-page">
-      <div className="blob blob-1"></div>
-      <div className="blob blob-2"></div>
       <div className="auth-back" onClick={() => navigate('/')}>← Back</div>
       <div className="auth-container animate-scale-in">
         <div className="auth-header">
           <div className="auth-icon">🎓</div>
           <h1 className="auth-title">Student Login</h1>
-          <p className="auth-subtitle">Check your laundry status anytime</p>
+          <p className="auth-subtitle">Check your laundry status</p>
         </div>
         {error && <div className="auth-error">{error}</div>}
         <form onSubmit={handleSubmit} className="auth-form">
@@ -65,6 +67,9 @@ export default function StudentLogin() {
           </div>
           <button id="student-login-btn" className="btn-primary" type="submit" disabled={loading}>
             {loading ? <span className="btn-spinner"></span> : 'Check My Laundry'}
+          </button>
+          <button className="forgot-btn" type="button" onClick={forgotPassword}>
+            Forgot password?
           </button>
         </form>
         <p className="auth-link-text">
