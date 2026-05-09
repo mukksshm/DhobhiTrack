@@ -6,6 +6,7 @@ export default function LandingPage() {
 
   return (
     <div className="landing-page">
+      <div className="bg-grid"></div>
       <div className="blob blob-1"></div>
       <div className="blob blob-2"></div>
       <div className="blob blob-3"></div>
